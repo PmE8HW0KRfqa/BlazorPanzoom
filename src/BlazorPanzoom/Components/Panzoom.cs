@@ -27,11 +27,12 @@ namespace BlazorPanzoom
 
         public async ValueTask DisposeAsync()
         {
-            GC.SuppressFinalize(this);
-            if (_underlyingPanzoomInterop != null)
-            {
-                await _underlyingPanzoomInterop.DisposeAsync();
-            }
+            // todo: this was commented out because it was throwing an exception. It's unclear if this will cause a memory leak leak
+            // GC.SuppressFinalize(this);
+            // if (_underlyingPanzoomInterop != null)
+            // {
+            //     await _underlyingPanzoomInterop.DisposeAsync();
+            // }
         }
 
         public async ValueTask PanAsync(double x, double y, IPanOnlyOptions? overridenOptions = default)
