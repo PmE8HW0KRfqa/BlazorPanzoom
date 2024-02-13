@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorPanzoom
+namespace BlazorPanzoom;
+
+public class PanzoomSelectorSet : ComponentBase, IAsyncDisposable
 {
-    public class PanzoomSelectorSet : ComponentBase, IAsyncDisposable
+    private readonly PanzoomSet _panzoomSet = new();
+    [Inject] private IPanzoomHelper PanzoomHelper { get; set; } = null!;
+    public IEnumerable<PanzoomInterop> PanzoomSet => _panzoomSet;
+    [Parameter] public string Selector { private get; set; } = "";
+    [Parameter] public PanzoomOptions PanzoomOptions { private get; set; } = PanzoomOptions.DefaultOptions;
+    [Parameter] public EventCallback OnAfterCreate { get; set; }
+
+    public async ValueTask DisposeAsync()
     {
-        private readonly PanzoomSet _panzoomSet = new();
-        [Inject] private IPanzoomHelper PanzoomHelper { get; set; } = null!;
-        public IEnumerable<PanzoomInterop> PanzoomSet => _panzoomSet;
-        [Parameter] public string Selector { private get; set; } = "";
-        [Parameter] public PanzoomOptions PanzoomOptions { private get; set; } = PanzoomOptions.DefaultOptions;
-        [Parameter] public EventCallback OnAfterCreate { get; set; }
+        GC.SuppressFinalize(this);
+        await _panzoomSet.DisposeAsync();
+    }
 
-        public async ValueTask DisposeAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
         {
-            GC.SuppressFinalize(this);
-            await _panzoomSet.DisposeAsync();
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                var list = await PanzoomHelper.CreateForSelectorAsync(Selector, PanzoomOptions);
+            var list = await PanzoomHelper.CreateForSelectorAsync(Selector, PanzoomOptions);
 
                 foreach (var panzoom in list)
                 {
@@ -35,9 +35,8 @@ namespace BlazorPanzoom
                 {
                     await OnAfterCreate.InvokeAsync();
                 }
-            }
-
-            await base.OnAfterRenderAsync(firstRender);
         }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
 }
