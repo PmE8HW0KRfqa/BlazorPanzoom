@@ -81,7 +81,7 @@ public class PanzoomInterop : IPanzoom, IAsyncDisposable
 
     public async ValueTask SetOptionsAsync(PanzoomOptions options)
     {
-        // TODO not allowed to set Force option
+        
         await _jsPanzoomReference.InvokeVoidAsync("setOptions", options);
     }
 
