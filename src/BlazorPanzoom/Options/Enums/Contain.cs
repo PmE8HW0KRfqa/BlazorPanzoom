@@ -6,7 +6,7 @@ namespace BlazorPanzoom;
 [JsonConverter(typeof(JsonStringEnumMemberConverter))]
 public enum Contain
 {
-    [JsonPropertyName("inside")] Inside,
-    [JsonPropertyName("outside")] Outside,
-    [JsonPropertyName("none")] None
+	[JsonPropertyName("inside")] Inside,
+	[JsonPropertyName("outside")] Outside,
+	[JsonPropertyName("none")] None
 }

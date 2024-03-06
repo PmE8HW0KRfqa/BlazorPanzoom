@@ -2,7 +2,7 @@
 
 public enum WheelMode
 {
-    ZoomWithWheel,
-    Custom,
-    None
+	ZoomWithWheel,
+	Custom,
+	None
 }

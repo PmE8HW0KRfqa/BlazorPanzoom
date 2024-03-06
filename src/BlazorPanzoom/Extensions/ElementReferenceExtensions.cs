@@ -4,10 +4,10 @@ namespace BlazorPanzoom;
 
 public static class ElementReferenceExtensions
 {
-    private static ElementReference DefaultElementReference => default;
+	private static ElementReference DefaultElementReference => default;
 
-    public static bool IsDefault(this ElementReference elementReference)
-    {
-        return elementReference.Equals(DefaultElementReference);
-    }
+	public static bool IsDefault(this ElementReference elementReference)
+	{
+		return elementReference.Equals(DefaultElementReference);
+	}
 }
