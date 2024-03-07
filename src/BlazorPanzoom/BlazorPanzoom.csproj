@@ -10,6 +10,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/shaigem/BlazorPanzoom</PackageProjectUrl>
         <PackageTags>Blazor, Blazor library, panzoom, zoom, pan, javascript</PackageTags>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -20,7 +21,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
@@ -29,7 +30,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
